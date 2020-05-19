@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package test;
+
+import "test/protos/simple.proto";
+
+message Wrapper {
+  Simple bar = 1;
+}

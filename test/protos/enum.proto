@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package test;
+
+enum Options {
+  FOO = 0;
+  BAR = 1;
+}
