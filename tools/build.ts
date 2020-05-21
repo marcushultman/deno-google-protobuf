@@ -37,6 +37,10 @@ export default async function patchGeneratedProtos(srcDir: string, dstDir: strin
       .replace(
         /goog.object.extend\(exports, (.*)\);/g,
         (_, prefix) => insertExports(exports, prefix)
+      )
+      .replace(
+        /(@template T\n(?:.+\n)*((.+)\.prototype[^\s]*).*\n(?:.+\n)*)/g,
+        (_, fnDef, fn, type) => patchJSDocTemplate(fnDef, fn, type)
       );
 
     const outFile = path.join(dstDir, path.relative(srcDir, entry.path));
@@ -60,6 +64,11 @@ function insertExports(exports: string[], prefix: string) {
     .filter(([_, name]) => !name.includes('.'))
     .map(([path, name]) => `export const ${name} = ${path};`)
     .join('\n');
+}
+
+function patchJSDocTemplate(fnDef: string, fn: string, type: string) {
+  const fnName = fn.replace(/\./g, '_');
+  return `@this ${type}\n * ${fnDef.replace(fn, `const ${fnName}`)}\n${fn} = ${fnName};`;
 }
 
 if (import.meta.main) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env deno run
 
-import { assertEquals, assertNotEquals } from 'https://deno.land/std/testing/asserts.ts';
+import { assert, assertEquals, assertNotEquals } from 'https://deno.land/std/testing/asserts.ts';
 import { Any } from '../google/protobuf/any_pb.js'
 import { Simple } from './protos/simple_pb.js';
 import { Wrapper } from './protos/wrapper_pb.js';
@@ -37,7 +37,10 @@ Deno.test({
     any.pack(new Simple().setFoo('foo').serializeBinary(), 'test.Simple');
     withAny.setFoo(any);
     const out = WithAny.deserializeBinary(withAny.serializeBinary());
-    const simple = out.getFoo().unpack(Simple.deserializeBinary, 'test.Simple');
+    const foo = out.getFoo();
+    assert(foo !== null);
+    const simple = foo.unpack(Simple.deserializeBinary, 'test.Simple');
+    assert(simple !== null);
     assertEquals(simple.getFoo(), 'foo');
   }
 });
