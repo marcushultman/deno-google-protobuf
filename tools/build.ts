@@ -13,13 +13,14 @@ const encoder = new TextEncoder();
  * @param srcDir source directory
  * @param dstDir destination directory
  */
-export default async function patchGeneratedProtos(srcDir: string, dstDir: string, version?: string){
-  const versionSuffix = version ? `@${version}` : '';
-  const runtimeBase = `https://deno.land/x/deno_google_protobuf${versionSuffix}`;
-
+export default async function patchGeneratedProtos(srcDir: string, dstDir: string, version?: string) {
   for await (const entry of walk(srcDir, { match: [/_pb.js$/], includeDirs: false })) {
     const src = await decoder.decode(await Deno.readFile(entry.path));
     const exports = [...src.matchAll(/goog.exportSymbol\('(.*)', null, global\);/g)].map(m => m[1]);
+    const outFile = path.join(dstDir, path.relative(srcDir, entry.path));
+
+    const runtimeBase = version ? `https://deno.land/x/deno_google_protobuf@${version}`
+                                : path.relative(path.dirname(outFile), '.');
 
     const patchedSrc = src
       .replace(
@@ -42,8 +43,6 @@ export default async function patchGeneratedProtos(srcDir: string, dstDir: strin
         /(@template T\n(?:.+\n)*((.+)\.prototype[^\s]*).*\n(?:.+\n)*)/g,
         (_, fnDef, fn, type) => patchJSDocTemplate(fnDef, fn, type)
       );
-
-    const outFile = path.join(dstDir, path.relative(srcDir, entry.path));
 
     await Deno.mkdir(path.dirname(outFile), { recursive: true });
     await Deno.writeFile(outFile, encoder.encode(patchedSrc));

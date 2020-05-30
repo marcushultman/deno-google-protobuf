@@ -26,9 +26,10 @@ jobs:
       - id: check-version
         run: deno run --allow-read --allow-run tools/check-version.ts
       - if: ${{ steps.check-version.outputs.version }}
-        run: npm run build -- ${{ steps.check-version.outputs.version }}
-      - if: ${{ steps.check-version.outputs.version }}
         run: npm test
+      # Now build with github url + @version
+      - if: ${{ steps.check-version.outputs.version }}
+        run: npm run build -- ${{ steps.check-version.outputs.version }}
       - if: ${{ steps.check-version.outputs.version }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
