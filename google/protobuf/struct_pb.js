@@ -8,7 +8,7 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-import * as jspb from 'https://deno.land/x/deno_google_protobuf@3.12.1/google-protobuf.js'
+import * as jspb from 'https://deno.land/x/deno_google_protobuf@3.12.2/google-protobuf.js'
 var goog = jspb;
 var global = Function('return this')();
 
