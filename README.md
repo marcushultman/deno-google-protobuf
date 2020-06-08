@@ -19,7 +19,17 @@ Then run the build script on the output:
 $ deno run --allow-read --allow-write https://deno.land/x/deno_google_protobuf/tools/build.ts srcDir dstDir
 ```
 
-The script will read all files matching `**_pb.js` in `srcDir` (and subdirectories) and transform the `import`- and `export` statements to deno-compatible syntax. It also switches out the `google-protobuf` runtime to the patched version provided by this package. The patched source is then written to `dstDir`. You can specify the same directory as both `srcDir` and `dstDir` to overwrite the files in-place.
+The script will read all files matching `**_pb.js` in `srcDir` (and subdirectories) and transform the `import`- and `export` statements to deno-compatible syntax. It also switches out the `google-protobuf` runtime to the patched version provided by this package. The patched source is then written to `dstDir`. You can specify the same directory as both `srcDir` and `dstDir` (or omit the `dstDir`) to overwrite the files in-place.
+
+### Version select
+
+By default, the master version of the pre-compiled runtime is used, but a third parameter can be passed to select a specific version (in which case, the `dstDir` must be explicitly provided). The version must match the version x.y.z and exist as a release in this repo:
+
+```
+$ deno run --allow-read --allow-write https://deno.land/x/deno_google_protobuf/tools/build.ts srcDir dstDir 3.12.2
+```
+
+If the version argument does not match a version string, it will be interpreted as a path to the runtime.
 
 ## google-runtime
 

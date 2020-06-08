@@ -6,6 +6,16 @@ import { walk } from 'https://deno.land/std/fs/walk.ts';
 const decoder = new TextDecoder('utf-8');
 const encoder = new TextEncoder();
 
+function getRuntimeBase(outFile: string, version?: string) {
+  if (!version) {
+    return 'https://deno.land/x/deno_google_protobuf';
+  } else if (/^\d+\.\d+\.\d+$/.test(version)) {
+    return `https://deno.land/x/deno_google_protobuf@${version}`
+  } else {
+    return path.relative(path.dirname(outFile), version);
+  }
+}
+
 /**
  * Takes all `srcDir/**_pb.js` files and make fix import of the google-protobuf
  * runtime, as well as imports and exports of other messages.
@@ -18,9 +28,7 @@ export default async function patchGeneratedProtos(srcDir: string, dstDir: strin
     const src = await decoder.decode(await Deno.readFile(entry.path));
     const exports = [...src.matchAll(/goog.exportSymbol\('(.*)', null, global\);/g)].map(m => m[1]);
     const outFile = path.join(dstDir, path.relative(srcDir, entry.path));
-
-    const runtimeBase = version ? `https://deno.land/x/deno_google_protobuf@${version}`
-                                : path.relative(path.dirname(outFile), '.');
+    const runtimeBase = getRuntimeBase(outFile, version);
 
     const patchedSrc = src
       .replace(

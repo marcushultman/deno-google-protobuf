@@ -4,9 +4,9 @@
   "description": "google-protobuf for deno",
   "scripts": {
     "build:runtime": "deno run --allow-read --allow-write --allow-run tools/runtime.ts node_modules/google-protobuf .",
-    "build:plugin": "deno run --allow-read --allow-write tools/build.ts node_modules/google-protobuf .",
+    "build:plugin": "deno run --allow-read --allow-write tools/build.ts node_modules/google-protobuf . .",
     "build:protoc": "protoc --js_out=import_style=commonjs,binary:. test/protos/**.proto",
-    "build:test": "deno run --allow-read --allow-write tools/build.ts test test",
+    "build:test": "deno run --allow-read --allow-write tools/build.ts test test .",
     "build": "npm run build:runtime && npm run build:plugin",
     "test": "npm run build && npm run build:protoc && npm run build:test && deno test && git checkout -- google/ google-protobuf.js"
   },

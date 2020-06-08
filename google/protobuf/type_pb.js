@@ -8,13 +8,13 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-import * as jspb from 'https://deno.land/x/deno_google_protobuf@3.12.2/google-protobuf.js'
+import * as jspb from '../../google-protobuf.js'
 var goog = jspb;
 var global = Function('return this')();
 
-import * as google_protobuf_any_pb from 'https://deno.land/x/deno_google_protobuf@3.12.2/google/protobuf/any_pb.js'
+import * as google_protobuf_any_pb from '../../google/protobuf/any_pb.js'
 goog.object.extend(proto, google_protobuf_any_pb);
-import * as google_protobuf_source_context_pb from 'https://deno.land/x/deno_google_protobuf@3.12.2/google/protobuf/source_context_pb.js'
+import * as google_protobuf_source_context_pb from '../../google/protobuf/source_context_pb.js'
 goog.object.extend(proto, google_protobuf_source_context_pb);
 goog.exportSymbol('proto.google.protobuf.Enum', null, global);
 goog.exportSymbol('proto.google.protobuf.EnumValue', null, global);
