@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/marcushultman/deno-google-protobuf#readme",
   "dependencies": {
-    "google-protobuf": "^4.0.0-rc.2"
+    "google-protobuf": "^3.12.4"
   }
 }
