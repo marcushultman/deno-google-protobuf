@@ -7,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 import * as jspb from '../../../google-protobuf.js'
 var goog = jspb;
@@ -891,7 +893,8 @@ proto.google.protobuf.compiler.CodeGeneratorResponse.File.toObject = function(in
   var f, obj = {
     name: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
     insertionPoint: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-    content: (f = jspb.Message.getField(msg, 15)) == null ? undefined : f
+    content: (f = jspb.Message.getField(msg, 15)) == null ? undefined : f,
+    generatedCodeInfo: (f = msg.getGeneratedCodeInfo()) && google_protobuf_descriptor_pb.GeneratedCodeInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -939,6 +942,11 @@ proto.google.protobuf.compiler.CodeGeneratorResponse.File.deserializeBinaryFromR
     case 15:
       var value = /** @type {string} */ (reader.readString());
       msg.setContent(value);
+      break;
+    case 16:
+      var value = new google_protobuf_descriptor_pb.GeneratedCodeInfo;
+      reader.readMessage(value,google_protobuf_descriptor_pb.GeneratedCodeInfo.deserializeBinaryFromReader);
+      msg.setGeneratedCodeInfo(value);
       break;
     default:
       reader.skipField();
@@ -988,6 +996,14 @@ proto.google.protobuf.compiler.CodeGeneratorResponse.File.serializeBinaryToWrite
     writer.writeString(
       15,
       f
+    );
+  }
+  f = message.getGeneratedCodeInfo();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      google_protobuf_descriptor_pb.GeneratedCodeInfo.serializeBinaryToWriter
     );
   }
 };
@@ -1098,6 +1114,43 @@ proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.clearContent
  */
 proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.hasContent = function() {
   return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
+ * @return {?proto.google.protobuf.GeneratedCodeInfo}
+ */
+proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.getGeneratedCodeInfo = function() {
+  return /** @type{?proto.google.protobuf.GeneratedCodeInfo} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_descriptor_pb.GeneratedCodeInfo, 16));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.GeneratedCodeInfo|undefined} value
+ * @return {!proto.google.protobuf.compiler.CodeGeneratorResponse.File} returns this
+*/
+proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.setGeneratedCodeInfo = function(value) {
+  return jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.google.protobuf.compiler.CodeGeneratorResponse.File} returns this
+ */
+proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.clearGeneratedCodeInfo = function() {
+  return this.setGeneratedCodeInfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.google.protobuf.compiler.CodeGeneratorResponse.File.prototype.hasGeneratedCodeInfo = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 

@@ -7,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 import * as jspb from '../../google-protobuf.js'
 var goog = jspb;
@@ -1146,12 +1148,16 @@ proto.google.protobuf.FileDescriptorProto.deserializeBinaryFromReader = function
       msg.addDependency(value);
       break;
     case 10:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.addPublicDependency(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addPublicDependency(values[i]);
+      }
       break;
     case 11:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.addWeakDependency(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addWeakDependency(values[i]);
+      }
       break;
     case 4:
       var value = new proto.google.protobuf.DescriptorProto;
@@ -9287,12 +9293,16 @@ proto.google.protobuf.SourceCodeInfo.Location.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
-      msg.setPathList(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addPath(values[i]);
+      }
       break;
     case 2:
-      var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
-      msg.setSpanList(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addSpan(values[i]);
+      }
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -9796,8 +9806,10 @@ proto.google.protobuf.GeneratedCodeInfo.Annotation.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
-      msg.setPathList(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addPath(values[i]);
+      }
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
