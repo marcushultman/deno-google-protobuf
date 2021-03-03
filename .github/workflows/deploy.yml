@@ -16,11 +16,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
-      - uses: denolib/setup-deno@master
-      - uses: arduino/setup-protoc@master
+          node-version: 14
+      - uses: denolib/setup-deno@v2
+      - uses: arduino/setup-protoc@v1
       - run: npm install google-protobuf@latest
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - id: check-version
