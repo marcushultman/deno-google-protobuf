@@ -18,7 +18,8 @@ export async function patchRuntime(srdDir: string, dstDir: string) {
   const src = await decoder.decode(await Deno.readFile(fileIn));
   const patchedSrc = src
     .replace(/getGlobal\(this\)/, 'getGlobal({Array,String})')
-    .replace(/exports\./g, 'export const ');
+    .replace(/"object"===typeof exports&&\((.*)\);/, (_, exp) => exp.replace(/,/g, ';'))
+    .replace(/;exports\./g, ';export const ');
   await Deno.writeFile(fileOut, encoder.encode(patchedSrc));
 
   return fileOut;
