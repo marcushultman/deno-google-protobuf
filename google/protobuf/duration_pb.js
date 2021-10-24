@@ -13,7 +13,7 @@
 
 import * as jspb from '../../google-protobuf.js'
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.google.protobuf.Duration', null, global);
 /**
